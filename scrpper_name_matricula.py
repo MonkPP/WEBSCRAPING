@@ -1,4 +1,4 @@
-# SCRAPPER REDUZIDO - RASPA MATRICULA E NOME 
+# SCRAPPER REDUZIDO - RASPA MATRICULA E NOME (cria um arquivo txt com o output)
 
 import sys
 from bs4 import BeautifulSoup
