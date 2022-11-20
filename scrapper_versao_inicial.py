@@ -47,7 +47,7 @@ html_servidores = tbody.get_attribute('innerHTML') #pegando o conteudo
 #informando a quantidade de registros e dividindo por 150 pra saber quantas pag tem
 registros = 72289
 #rodando dó 5 paginas de teste, o '-1' p ele não duplicar a ultima página
-pag = 5-1 #(registros/150)-1
+pag = 3 #(registros/150)-1
 
 
 # não sei explicar essa parte, acho que ele passa pra html pra poder encontrar as 'tags'
@@ -105,7 +105,7 @@ for a in new:
 #separando cada 5 elemento e colocando em uma sublista, tods as sublistas estão na lista 'lista_servidores'
 lista_servidores = []
 for i in range(0, len(nova), 6):
-    lista_servidores.append(nova[i : i+5])
+    lista_servidores.append(nova[i : i+6])
     
     
 #imprimindo a lista dos servidores, que agora é uma lista de varias listas de Strings
