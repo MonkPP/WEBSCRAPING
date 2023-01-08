@@ -1,3 +1,4 @@
+#encoding: utf-8
 # SCRAPPER DADOS TABELA + DADOS LUPA COMPARANDO COM LISTA DE ALUNOS
 
 #IMPORTS
@@ -7,7 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from time import sleep
 import re
-
+from nomes_comparacao import alunos
 
 # HEADLESS
 chrome_options = Options()
@@ -39,12 +40,14 @@ proximo = navegador.find_element(By.XPATH, '//*[@id="TB_PROXIMO_ENABLED"]/a')
 
 
 #LISTA DOS ALUNOS PARA COMPARAÇÃO E LISTA VAZIA PRA COLOCAR OS DADOS DOS ALUNO-SERVIDORES
-alunos = ['ABADIA COSTA REIS', 'paola', 'ABADIAS ELZA RIBEIRO PAULINO','raysa', 'ADEMILSON RIBEIRO DA SILVA', 'ZULMIRA SILVA', 'ZULEME MARIA FREITAS PEREIRA', 'amanda']
+#alunos = ['ABADIA COSTA REIS', 'paola', 'ADAO JUNIOR DE OLIVEIRA', 'ABADIAS ELZA RIBEIRO PAULINO','raysa', 'ADEMILSON RIBEIRO DA SILVA', 'ZULMIRA SILVA', 'ZULEME MARIA FREITAS PEREIRA', 'amanda']
+
+servidor = []
 alunos_servidores = []
 dados_tabela = []
 
 #CALCULANDO A PAG
-#'''
+'''
 registros = navegador.find_element(By.XPATH, '//*[@id="span_vTOTAL_REGISTROS"]')
 reg = int(registros.get_attribute('innerHTML'))
 
@@ -52,8 +55,8 @@ if reg % 150 == 0:
     pag = reg//150
 else:
     pag = reg//150 + 1
-#'''
-#pag = 2  #teste de paginas
+'''
+pag = 2  #teste de paginas
 
 
 #RASPAGEM DE DADOS           
@@ -99,32 +102,35 @@ for p in range(pag):
                     #PEGANDO DADO - MATRICULA
                     mat = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_MATRICULA_CONTRATO"]') 
                     matricula = str(mat.get_attribute('innerHTML'))
-                    alunos_servidores.append(matricula)
+                    servidor.append(matricula)
                     
                     #PEGANDO DADO - NOME
                     nom = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_NOME"]') 
                     nome = str(nom.get_attribute('innerHTML'))
-                    alunos_servidores.append(nome)
+                    servidor.append(nome)
                     
                     #PEGANDO DADO - SITUAÇÃO
                     sit = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_SITUACAO"]') 
                     situacao = str(sit.get_attribute('innerHTML'))
-                    alunos_servidores.append(situacao)
+                    servidor.append(situacao)
                     
                     #PEGANDO DADO - SALARIO
                     sal = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_VALOR"]') 
                     salario = str(sal.get_attribute('innerHTML'))
-                    alunos_servidores.append(salario)
+                    servidor.append(salario)
                     
                     #PEGANDO DADO - CARGO
                     car = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_CARGO"]') 
                     cargo = str(car.get_attribute('innerHTML'))
-                    alunos_servidores.append(cargo)
+                    servidor.append(cargo)
                     
                     #PEGANDO DADO - LOTAÇÃO
                     lot = navegador.find_element(By.XPATH, '//*[@id="span_vSERVIDOR_LOTACAO_DESC"]') 
                     lotacao = str(lot.get_attribute('innerHTML'))
-                    alunos_servidores.append(lotacao)
+                    servidor.append(lotacao)
+                    
+                    alunos_servidores.append(servidor)
+                    servidor = []
                     
                     #MUDANDO PARA A JANELA PRINCIPAL
                     navegador.switch_to.window(window_before)
