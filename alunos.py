@@ -41,10 +41,3 @@ for i in range(3):
 for d in range(len(todos_dados)):
     lista_alunos.append(todos_dados[d][0]) 
     
-
-print(lista_alunos[0])
-print(lista_alunos[-1])
-print(todos_dados[0])
-print(todos_dados[-1])
-print(nomes[0])
-print(nomes[-1])

@@ -1,6 +1,7 @@
-#encoding: utf-8
-#ADRIANA GOMES DOS SANTOS
-#SCRAPPER DADOS TABELA + DADOS LUPA COMPARANDO COM LISTA DE ALUNOS
+#*************VERSÃO DO CHROMEDRIVER DEVE SER A MESMA DO COMPUTADOR***************
+#CIDADE E LINK
+cidade = 'Rondonopolis'
+link_portal = 'http://www.rondonopolis.mt.gov.br/transparencia_rondonopolis/servlet/contrato_servidor_v3?1'
 
 #IMPORTS
 import sys
@@ -19,12 +20,10 @@ chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--disable-software-rasterizer")
 chrome_options.add_argument('--disable-features=DefaultPassthroughCommandDecoder')
 
-
 #ABRINDO O SITE
 navegador = webdriver.Chrome(options=chrome_options)
-navegador.get('http://www.rondonopolis.mt.gov.br/transparencia_rondonopolis/servlet/contrato_servidor_v3?1')
+navegador.get(link_portal)
 navegador.window_handles
-
 
 #CLICANDO EM PESQUISAR E OPÇÃO 150
 pesquisar = navegador.find_element(By.XPATH, '//*[@id="DIV_BTN_PESQUISAR"]/input')
@@ -35,27 +34,23 @@ opcao150 = navegador.find_element(By.XPATH, '//*[@id="vQTD_POR_PAGINA"]/option[7
 opcao150.click()
 sleep(2)
 
-
 #ATRIBUINDO O BOTÃO PROXIMO
 proximo = navegador.find_element(By.XPATH, '//*[@id="TB_PROXIMO_ENABLED"]/a')
-
 
 #LISTAS 
 servidor = []
 alunos_servidores = []
 
-
 #CALCULANDO A PAG
-registros = navegador.find_element(By.XPATH, '//*[@id="span_vTOTAL_REGISTROS"]')
+'''registros = navegador.find_element(By.XPATH, '//*[@id="span_vTOTAL_REGISTROS"]')
 reg = int(registros.get_attribute('innerHTML'))
 
 if reg % 150 == 0:
     pag = reg//150
 else:
-    pag = reg//150 + 1
+    pag = reg//150 + 1'''
 
-#pag = 50  #teste de paginas
-
+pag = 20  #teste de paginas
 
 #RASPAGEM DE DADOS           
 for p in range(pag):
@@ -101,13 +96,13 @@ for p in range(pag):
                     window_after = navegador.window_handles[-1] 
                     navegador.switch_to.window(window_after)
                     
-                
                     #PEGANDO DADO - MATRICULA
                     try:
                         mat = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_MATRICULA_CONTRATO"]') 
                         matricula = str(mat.get_attribute('innerHTML'))
                         servidor.append(matricula)
                     except:
+                        #mat = 
                         servidor.append("não tem mat")
                     
                     #PEGANDO DADO - NOME
@@ -151,7 +146,7 @@ for p in range(pag):
                     alunos_servidores.append(servidor)
                     servidor = []
                     
-                    #MUDANDO PARA A JANELA PRINCIPAL
+                    #VOLTANDO PARA A JANELA PRINCIPAL
                     navegador.switch_to.window(window_before)
                                     
     #PROXIMA PAGINA            
@@ -163,12 +158,11 @@ sleep(2)
 
 navegador.quit()
 
-#IMPRIMINDO OS DADOS DOS ALUNO-SERVIDORES 
-'''for li in alunos_servidores:
-    print(li)'''
-    
+#CRIAR UM ARQUIVO COM OS DADOS RASPADOS
+nome_arquivo = cidade + '_raspagem.txt' #pode mudar o tipo de arquivo aqui
+
 original_stdout = sys.stdout 
-with open('lista_alunos_servidores.txt', 'w', encoding="utf-8") as f:  #pode mudar o tipo de arquivo aqui
+with open(nome_arquivo, 'w', encoding="utf-8") as f:  
     sys.stdout = f # Change the standard output to the file we created.
     for li in alunos_servidores:
         print(li)
