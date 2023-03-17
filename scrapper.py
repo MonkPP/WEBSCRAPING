@@ -50,7 +50,17 @@ if reg % 150 == 0:
 else:
     pag = reg//150 + 1'''
 
-pag = 20  #teste de paginas
+pag = 15  #teste de paginas
+
+#FUNÇÃO PEGAR O CONTEUDO DA CEDULA
+def limpar(td):
+    c = str(td)
+    if c == '<td></td>':
+        c = ' - '
+    d = c.replace('<td>', '')
+    e = d.replace('</td>', '')  
+    return e
+                
 
 #RASPAGEM DE DADOS           
 for p in range(pag):
@@ -71,15 +81,11 @@ for p in range(pag):
         #ITERANDO PELAS CEDULAS DE CADA LINHA
         for td in tr:      
             cont = cont+1
-            
-            if cont == 2: # or cont == 1 or cont == 5:
-                c = str(td)
+            if cont == 1:
+                matri = limpar(td)  
                 
-                #LIMPANDO OS DADOS                
-                if c == '<td></td>':
-                    c = ' - '
-                d = c.replace('<td>', '')
-                info = d.replace('</td>', '')   
+            if cont == 2: 
+                info = limpar(td)   
                 
                 # COMPARANDO AS LISTAS E RASPANDO OS DADOS
                 if info in lista_alunos:
@@ -96,16 +102,14 @@ for p in range(pag):
                     window_after = navegador.window_handles[-1] 
                     navegador.switch_to.window(window_after)
                     
-                    #PEGANDO DADO - MATRICULA
+                    #PEGANDO DADOS
                     try:
                         mat = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_MATRICULA_CONTRATO"]') 
                         matricula = str(mat.get_attribute('innerHTML'))
-                        servidor.append(matricula)
                     except:
-                        #mat = 
-                        servidor.append("não tem mat")
+                        matricula = matri
+                    servidor.append(matricula)
                     
-                    #PEGANDO DADO - NOME
                     try:
                         nom = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_NOME"]') 
                         nome = str(nom.get_attribute('innerHTML'))
@@ -113,7 +117,6 @@ for p in range(pag):
                     except:
                         servidor.append(info)
                         
-                    #PEGANDO DADO - SITUAÇÃO
                     try:
                         sit = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_SITUACAO"]') 
                     except:
@@ -121,7 +124,6 @@ for p in range(pag):
                     situacao = str(sit.get_attribute('innerHTML'))
                     servidor.append(situacao)
                         
-                    #PEGANDO DADO - SALARIO
                     try:
                         sal = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_VALOR"]')
                     except:
@@ -129,7 +131,6 @@ for p in range(pag):
                     salario = str(sal.get_attribute('innerHTML'))
                     servidor.append(salario)
                         
-                    #PEGANDO DADO - CARGO
                     try:
                         car = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_CARGO"]') 
                     except:
@@ -137,7 +138,6 @@ for p in range(pag):
                     cargo = str(car.get_attribute('innerHTML'))
                     servidor.append(cargo)
                         
-                    #PEGANDO DADO - LOTAÇÃO
                     lot = navegador.find_element(By.XPATH, '//*[@id="span_vSERVIDOR_LOTACAO_DESC"]') 
                     lotacao = str(lot.get_attribute('innerHTML'))
                     servidor.append(lotacao)
