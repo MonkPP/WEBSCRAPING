@@ -1,43 +1,23 @@
 # importing module
-from pandas import *
- 
-todos_dados = []
-lista_alunos = []
+import pandas as pd
 
-# reading CSV file
-ano = 2020
-for i in range(3):
-    documento = 'aluno ' + str(ano) + '.csv'
-    ano = ano + 1
-    data = read_csv(documento)
-    
-    # converting column data to list
-    lattes = data['lattes'].tolist()
-    cota = data['cota_mec'].tolist()
-    situacao = data['situacao'].tolist()
-    nome = data['nome'].tolist()
-    curso = data['curso'].tolist()
-    matricula = data['matricula'].tolist()
-    linha_pesquisa = data['linha_pesquisa'].tolist()
-    cota_sistec = data['cota_sistec'].tolist()
-    campus = data['campus'].tolist()
-        
-    nomes = []
+urls_alunos = [
+    "https://dados.ifmt.edu.br/dataset/6b7c7c38-587a-436b-a7b2-4e3ca59d1ca8/resource/fc30244a-166d-4830-a66d-a573ebe187eb/download/aluno.csv",
+    "https://dados.ifmt.edu.br/dataset/6b7c7c38-587a-436b-a7b2-4e3ca59d1ca8/resource/d2a472aa-3a02-4d45-bc65-5852fa9be664/download/aluno.csv",
+    "https://dados.ifmt.edu.br/dataset/6b7c7c38-587a-436b-a7b2-4e3ca59d1ca8/resource/96f114e2-58f9-4f59-9c44-f59814c0b264/download/aluno.csv",
+    "https://dados.ifmt.edu.br/dataset/6b7c7c38-587a-436b-a7b2-4e3ca59d1ca8/resource/1535c8e2-f1c4-4dcf-9948-dc734522d040/download/aluno.csv",
+]
+
+dfs_alunos = []
+nomes = []
+
+# percorre os links e adiociona na lista anterio
+for url in urls_alunos:
+    df = pd.read_csv(url, encoding="utf-8", sep=",")
+    nome = df['nome'].tolist()
     for item in nome:
         n = item.upper()
         nomes.append(n)
+    dfs_alunos.append(df)
     
-    
-    # printing list data
-    a = 0
-    for n in nome:
-        aluno = []
-        aluno.append(nomes[a])
-        aluno.append(situacao[a])
-        a = a + 1
-        todos_dados.append(aluno)
-        
-        
-for d in range(len(todos_dados)):
-    lista_alunos.append(todos_dados[d][0]) 
-    
+lista_alunos = nomes

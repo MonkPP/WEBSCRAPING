@@ -42,15 +42,15 @@ servidor = []
 alunos_servidores = []
 
 #CALCULANDO A PAG
-'''registros = navegador.find_element(By.XPATH, '//*[@id="span_vTOTAL_REGISTROS"]')
+registros = navegador.find_element(By.XPATH, '//*[@id="span_vTOTAL_REGISTROS"]')
 reg = int(registros.get_attribute('innerHTML'))
 
 if reg % 150 == 0:
     pag = reg//150
 else:
-    pag = reg//150 + 1'''
+    pag = reg//150 + 1
 
-pag = 15  #teste de paginas
+#pag = 15  #teste de paginas
 
 #FUNÇÃO PEGAR O CONTEUDO DA CEDULA
 def limpar(td):
