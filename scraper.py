@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+import csv
 from time import sleep
 from alunos import lista_alunos
 
@@ -60,8 +61,37 @@ def limpar(td):
     d = c.replace('<td>', '')
     e = d.replace('</td>', '')  
     return e
-                
 
+
+#FUNÇÃO UNICODIZAR
+def unicodizar(string):
+    a = ['a', 'á', 'à', 'ã', 'A', 'Á', 'À', 'Ã']
+    e = ['e', 'é', 'ê', 'è', 'ẽ', 'E', 'É', 'Ê', 'È', 'Ẽ']
+    i = ['i', 'í', 'î', 'ì', 'ĩ', 'I', 'Í', 'Î', 'Ì', 'Ĩ']
+    u = ['u', 'ú', 'û', 'ù', 'ũ', 'U', 'Ú', 'Û', 'Ù', 'Ũ']
+    c = ['c', 'ç', 'C', 'Ç']
+    n = ['n', 'ñ', 'N', 'Ñ']
+    
+    nova_string = ""
+    for letra in string:
+        if letra in a:
+            nova_string += 'A'
+        elif letra in e:
+            nova_string += 'E'
+        elif letra in i:
+            nova_string += 'I'
+        elif letra in u:
+            nova_string += 'U'
+        elif letra in c:
+            nova_string += 'C'
+        elif letra in n:
+            nova_string += 'N'
+        else:
+            nova_string += letra
+    return nova_string
+        
+        
+        
 #RASPAGEM DE DADOS           
 for p in range(pag):
     print('pag:' , p+1)    
@@ -159,11 +189,26 @@ sleep(2)
 navegador.quit()
 
 #CRIAR UM ARQUIVO COM OS DADOS RASPADOS
-nome_arquivo = cidade + '_raspagem.txt' #pode mudar o tipo de arquivo aqui
+nome_arquivo = cidade + '_raspagem.csv' #pode mudar o tipo de arquivo aqui
 
-original_stdout = sys.stdout 
+
+# Open a new CSV file for writing
+with open(nome_arquivo, mode='w', newline='', encoding="utf-8") as file:
+    # Create a CSV writer object
+    writer = csv.writer(file, delimiter=',')
+    
+    # Write the header row
+    writer.writerow(['Matricula', 'Nome', 'Situação', 'Salario', 'Cargo', 'Lotação'])
+    
+    # Write the data rows
+    for row in alunos_servidores:
+        writer.writerow(row)
+
+
+
+'''original_stdout = sys.stdout 
 with open(nome_arquivo, 'w', encoding="utf-8") as f:  
     sys.stdout = f # Change the standard output to the file we created.
-    for li in alunos_servidores:
-        print(li)
-    sys.stdout = original_stdout # Reset the standard output to its original value
+    print('alunos_python = ', alunos_servidores)
+    sys.stdout = original_stdout # Reset the standard output to its original value'''
+    
