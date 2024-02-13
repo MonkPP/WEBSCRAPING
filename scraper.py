@@ -1,3 +1,6 @@
+#*************RASPAGEM DE SERVIDORES QUE FORAM ALUNOS DO IFMT***************
+#cria um arquivo csv com os servidores que estiverem na lista de alunos do ifmt
+
 #*************VERSÃO DO CHROMEDRIVER DEVE SER A MESMA DO COMPUTADOR***************
 #CIDADE E LINK
 cidade = 'Rondonopolis'
@@ -11,7 +14,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import csv
 from time import sleep
-from alunos import lista_alunos
+from alunos_unicode import lista_alunos
 
 # HEADLESS
 chrome_options = Options()
@@ -51,8 +54,6 @@ if reg % 150 == 0:
 else:
     pag = reg//150 + 1
 
-#pag = 15  #teste de paginas
-
 #FUNÇÃO PEGAR O CONTEUDO DA CEDULA
 def limpar(td):
     c = str(td)
@@ -61,14 +62,13 @@ def limpar(td):
     d = c.replace('<td>', '')
     e = d.replace('</td>', '')  
     return e
-
-
-#FUNÇÃO UNICODIZAR
+         
 def unicodizar(string):
     a = ['a', 'á', 'à', 'ã', 'A', 'Á', 'À', 'Ã']
     e = ['e', 'é', 'ê', 'è', 'ẽ', 'E', 'É', 'Ê', 'È', 'Ẽ']
     i = ['i', 'í', 'î', 'ì', 'ĩ', 'I', 'Í', 'Î', 'Ì', 'Ĩ']
     u = ['u', 'ú', 'û', 'ù', 'ũ', 'U', 'Ú', 'Û', 'Ù', 'Ũ']
+    o = ['o','ó', 'ò', 'ô', 'õ', 'O', 'Ó', 'Ò', 'Ô', 'Õ']
     c = ['c', 'ç', 'C', 'Ç']
     n = ['n', 'ñ', 'N', 'Ñ']
     
@@ -82,6 +82,8 @@ def unicodizar(string):
             nova_string += 'I'
         elif letra in u:
             nova_string += 'U'
+        elif letra in o:
+            nova_string += 'O'    
         elif letra in c:
             nova_string += 'C'
         elif letra in n:
@@ -89,9 +91,8 @@ def unicodizar(string):
         else:
             nova_string += letra
     return nova_string
-        
-        
-        
+      
+      
 #RASPAGEM DE DADOS           
 for p in range(pag):
     print('pag:' , p+1)    
@@ -115,7 +116,8 @@ for p in range(pag):
                 matri = limpar(td)  
                 
             if cont == 2: 
-                info = limpar(td)   
+                infor = limpar(td)   
+                info = unicodizar(infor)
                 
                 # COMPARANDO AS LISTAS E RASPANDO OS DADOS
                 if info in lista_alunos:
@@ -138,43 +140,34 @@ for p in range(pag):
                         matricula = str(mat.get_attribute('innerHTML'))
                     except:
                         matricula = matri
-                    servidor.append(matricula)
-                    
-                    try:
-                        nom = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_NOME"]') 
-                        nome = str(nom.get_attribute('innerHTML'))
-                        servidor.append(nome)
-                    except:
-                        servidor.append(info)
-                        
+                                            
                     try:
                         sit = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_SITUACAO"]') 
                     except:
                         sit = navegador.find_element(By.XPATH, '//*[@id="span_vCONTRATO_SITUACAO"]') 
                     situacao = str(sit.get_attribute('innerHTML'))
-                    servidor.append(situacao)
-                        
+                    
                     try:
                         sal = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_VALOR"]')
                     except:
                         sal = navegador.find_element(By.XPATH, '//*[@id="span_vCONTRATO_VALOR"]') 
                     salario = str(sal.get_attribute('innerHTML'))
-                    servidor.append(salario)
-                        
+                    
                     try:
                         car = navegador.find_element(By.XPATH, '//*[@id="span_vSERV_CARGO"]') 
                     except:
                         car = navegador.find_element(By.XPATH, '//*[@id="span_vCONTRATO_PESSOAL_OBJETO"]') 
                     cargo = str(car.get_attribute('innerHTML'))
-                    servidor.append(cargo)
-                        
+                    
                     lot = navegador.find_element(By.XPATH, '//*[@id="span_vSERVIDOR_LOTACAO_DESC"]') 
                     lotacao = str(lot.get_attribute('innerHTML'))
-                    servidor.append(lotacao)
+                    
                     
                     #ADD A LISTA A UMA LISTA MAIOR E LIMPANDO A PRIMEIRA
+                    servidor = [matricula, info, situacao, salario, cargo, lotacao]
                     alunos_servidores.append(servidor)
                     servidor = []
+                    
                     
                     #VOLTANDO PARA A JANELA PRINCIPAL
                     navegador.switch_to.window(window_before)
@@ -186,29 +179,17 @@ for p in range(pag):
         sleep(2)
 sleep(2)
 
+
 navegador.quit()
+
 
 #CRIAR UM ARQUIVO COM OS DADOS RASPADOS
 nome_arquivo = cidade + '_raspagem.csv' #pode mudar o tipo de arquivo aqui
 
-
-# Open a new CSV file for writing
 with open(nome_arquivo, mode='w', newline='', encoding="utf-8") as file:
-    # Create a CSV writer object
+
     writer = csv.writer(file, delimiter=',')
+    writer.writerow(['matricula', 'nome', 'situacao', 'salario', 'cargo', 'lotacao'])
     
-    # Write the header row
-    writer.writerow(['Matricula', 'Nome', 'Situação', 'Salario', 'Cargo', 'Lotação'])
-    
-    # Write the data rows
     for row in alunos_servidores:
         writer.writerow(row)
-
-
-
-'''original_stdout = sys.stdout 
-with open(nome_arquivo, 'w', encoding="utf-8") as f:  
-    sys.stdout = f # Change the standard output to the file we created.
-    print('alunos_python = ', alunos_servidores)
-    sys.stdout = original_stdout # Reset the standard output to its original value'''
-    
