@@ -43,7 +43,13 @@ Este projeto foi desenvolvido como parte de um programa de Iniciação Científi
 
 ## Funcionamento do Código
 
-O código-fonte neste repositório [(scraper.py)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/scraper.py) implementa um script em Python que realiza a raspagem de dados do Portal da Transparência da Prefeitura de Rondonópolis/MT. O script utiliza Selenium para automatizar a interação com o site, navegando pelas páginas e clicando nos botões de pesquisa. Em seguida, os dados são extraídos usando BeautifulSoup e organizados em um arquivo CSV.
+O código-fonte principal deste projeto é o [(scraper.py)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/scraper.py), que implementa um script em Python responsável pela raspagem de dados do Portal da Transparência da Prefeitura de Rondonópolis/MT. Este script utiliza Selenium para automatizar a interação com o site, navegando pelas páginas e clicando nos botões de pesquisa. Em seguida, os dados são extraídos usando BeautifulSoup e organizados em um arquivo CSV.
+
+Outros Arquivos Python no Repositório
+[(alunos_df.py)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/alunos_df.py): Este arquivo Python junta os dados de todos os alunos em um único arquivo CSV.
+[(alunos_unicode.py)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/alunos_unicode.py):Cria uma lista de nomes de alunos, que será importada pelo scraper para fazer a comparação.
+[(juntar_dfs.py)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/juntar_dfs.py):Cria um arquivo CSV com os dados dos servidores e alunos com base nos nomes em comum.
+
 
 ## Como Utilizar
 
