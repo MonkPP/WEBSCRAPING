@@ -1,6 +1,6 @@
 <h1 id="portugues" align="center">RASPAGEM DE DADOS</h1>
 
-<h3 align="center">-<a href="#english"> ENGLISH VERSION </a>-</h3>
+<h3 align="center">-<a href="#english">GO TO README ENGLISH VERSION </a>-</h3>
 
 <details>
   <summary>Indice</summary>
@@ -69,7 +69,7 @@ Monyk Paola - monyk.penafor@gmail.com
 <br /><br /><br /><br />
 
 <h1 id="english" align="center">WEBSCRAPING</h1>
-<h3 align="center">-<a href="#portugues"> VERSÃO EM PORTUGUÊS </a>-</h3>
+<h3 align="center">-<a href="#portugues">LEIA A VERSÃO EM PORTUGUÊS </a>-</h3>
 
 <details>
   <summary>Table of Contents</summary>
