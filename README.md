@@ -2,7 +2,7 @@
 <h1 id="english" align="center">WEBSCRAPING</h1>
 <h3 align="center">-<a href="#portugues"> VERSÃO PORTUGUÊS </a>-</h3>
 
-
+<!-- INSERIR COPIA TRADUZIDA -->
 
 </br></br>
 
@@ -32,7 +32,7 @@
 
 ## Sobre o Projeto
 
-Este projeto foi desenvolvido como parte de um programa de Iniciação Científica no Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso (IFMT), intitulado "Em busca de egressos do IFMT atuantes como servidores públicos do Município de Rondonópolis/MT". O objetivo do projeto é automatizar a consulta de informações sobre servidores públicos no Portal da Transparência da Prefeitura de Rondonópolis/MT, utilizando técnicas de raspagem de dados.
+Este projeto foi desenvolvido como parte de um programa de Iniciação Científica no Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso (IFMT), intitulado "Em busca de egressos do IFMT atuantes como servidores públicos do Município de Rondonópolis/MT". O objetivo do projeto é automatizar a consulta de informações sobre servidores públicos no Portal da Transparência da Prefeitura de Rondonópolis/MT, utilizando técnicas de raspagem de dados. Os dados obtidos são comparados com os dados dos alunos do IFMT para fazer uma relação aluno-servidor e finalmente ter um arquivo que nos mostre todos os aluno do IFMT que são/foram servidores públicos em Rondonópolis. <a href="https://github.com/MonykPenafor/WEBSCRAPING/blob/main/DADOS%20OBTIDOS/servidores_alunos_rondonopolis.csv"> Resultado do projeto:<strong> servidores_alunos_rondonopolis »</strong></a>
 
 
 ### Ferramentas Utilizadas
@@ -40,21 +40,26 @@ Este projeto foi desenvolvido como parte de um programa de Iniciação Científi
 - **Python**: A linguagem de programação principal utilizada para desenvolver este projeto.
 - **Selenium**: Uma ferramenta de automação de navegador web que permite simular interações do usuário, como clicar em botões e preencher formulários. É especialmente útil quando o site alvo utiliza JavaScript extensivamente ou requer interações específicas com a página da web.
 - **BeautifulSoup**: Uma biblioteca Python para análise de documentos HTML e XML. Foi utilizada para extrair e manipular dados dos elementos HTML da página web.
+- **Pandas**: Uma biblioteca Python para manipulação e análise de dados. Foi utilizada para processar e manipular dados estruturados, como a junção de dataframes. Neste projeto foi usada especificamente para pegar os dados dos alunos do IFMT, que estavam separados por ano em arquivos CSV, e para juntar os dataframes com relação aluno-servidor.
+
 
 ## Funcionamento do Código
 
 O código-fonte principal deste projeto é o [(scraper.py)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/scraper.py), que implementa um script em Python responsável pela raspagem de dados do Portal da Transparência da Prefeitura de Rondonópolis/MT. Este script utiliza Selenium para automatizar a interação com o site, navegando pelas páginas e clicando nos botões de pesquisa. Em seguida, os dados são extraídos usando BeautifulSoup e organizados em um arquivo CSV.
 
-Outros Arquivos Python no Repositório
-[(alunos_df.py)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/alunos_df.py): Este arquivo Python junta os dados de todos os alunos em um único arquivo CSV.
-[(alunos_unicode.py)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/alunos_unicode.py):Cria uma lista de nomes de alunos, que será importada pelo scraper para fazer a comparação.
-[(juntar_dfs.py)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/juntar_dfs.py):Cria um arquivo CSV com os dados dos servidores e alunos com base nos nomes em comum.
+O resultado da raspagem de dados com selenium é este: [(Rondonopolis_raspagem.csv)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/DADOS%20OBTIDOS/Rondonopolis_raspagem.csv)
+
+### Outros Arquivos Python no Repositório
+
+- [(alunos_df.py)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/alunos_df.py) : Este arquivo Python junta os dados de todos os alunos em um único arquivo CSV com a ajuda da biblioteca Pandas. Ao executar o código obtemos este arquivo: [(alunos_ifmt.csv)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/DADOS%20OBTIDOS/alunos_ifmt.csv)
+- [(alunos_unicode.py)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/alunos_unicode.py) : Cria uma lista de nomes de alunos, que será importada pelo scraper para fazer a comparação.
+- [(juntar_dfs.py)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/juntar_dfs.py) : Cria um arquivo CSV com os dados dos servidores e alunos com base nos nomes em comum usando Pandas. Ao executar o código obtemos este arquivo: [(servidores_alunos_rondonopolis.csv)](https://github.com/MonykPenafor/WEBSCRAPING/blob/main/DADOS%20OBTIDOS/servidores_alunos_rondonopolis.csv)
 
 
 ## Como Utilizar
 
 1. **Requisitos de Ambiente**: É necessário ter Python, Selenium e BeautifulSoup4 instalados no ambiente local.
-2. **Configuração do ChromeDriver**: Certifique-se de que a versão do ChromeDriver seja compatível com a versão do navegador Chrome instalada no seu sistema. (Se tiver dúvidas sobre o ChromeDriver ler a documentação do [selenium](https://selenium-python.readthedocs.io/))
+2. **Configuração do ChromeDriver**: Certifique-se de que a versão do ChromeDriver seja compatível com a versão do navegador Chrome instalada no seu sistema. (Dúvidas sobre o ChromeDriver ler a documentação do [selenium](https://selenium-python.readthedocs.io/))
 3. **Execução do Script**: Abra o script em um ambiente Python adequado, como o Visual Studio Code (VSCode), e execute-o. O script irá iniciar um navegador Chrome em modo headless, realizar a raspagem de dados e salvar os resultados em um arquivo CSV.
 
 ## Observações
