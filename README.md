@@ -2,7 +2,6 @@
 
 <h3 align="center">-<a href="#english"> ENGLISH VERSION </a>-</h3>
 
-
 <details>
   <summary>Indice</summary>
   <ol>
@@ -24,9 +23,9 @@
 
 ## Sobre o Projeto
 
-Este projeto foi desenvolvido como parte de um programa de Iniciação Científica no Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso (IFMT), intitulado "Em busca de egressos do IFMT atuantes como servidores públicos do Município de Rondonópolis/MT". O objetivo do projeto é automatizar a consulta de informações sobre servidores públicos no Portal da Transparência da Prefeitura de Rondonópolis/MT, utilizando técnicas de raspagem de dados. Os dados obtidos são comparados com os dados dos alunos do IFMT para fazer uma relação aluno-servidor e finalmente ter um arquivo que nos mostre todos os aluno do IFMT que são/foram servidores públicos em Rondonópolis. 
+Este projeto foi desenvolvido como parte de um programa de Iniciação Científica no Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso (IFMT), intitulado "Em busca de egressos do IFMT atuantes como servidores públicos do Município de Rondonópolis/MT". O objetivo do projeto é automatizar a consulta de informações sobre servidores públicos no Portal da Transparência da Prefeitura de Rondonópolis/MT, utilizando técnicas de raspagem de dados. Os dados obtidos são comparados com os dados dos alunos do IFMT para gerar um arquivo que mostre os aluno do IFMT que são/foram servidores públicos em Rondonópolis. 
 
-Resultado do projeto:<a href="https://github.com/MonykPenafor/WEBSCRAPING/blob/main/DADOS%20OBTIDOS/servidores_alunos_rondonopolis.csv"> <strong> servidores_alunos_rondonopolis »</strong></a>
+Resultado do projeto:<a href="https://github.com/MonykPenafor/WEBSCRAPING/blob/main/DADOS%20OBTIDOS/servidores_alunos_rondonopolis.csv"> <strong> servidores_alunos_rondonopolis</strong></a>
 
 
 ### Ferramentas Utilizadas
@@ -34,7 +33,7 @@ Resultado do projeto:<a href="https://github.com/MonykPenafor/WEBSCRAPING/blob/m
 - **Python**: A linguagem de programação principal utilizada para desenvolver este projeto.
 - **Selenium**: Uma ferramenta de automação de navegador web que permite simular interações do usuário, como clicar em botões e preencher formulários. É especialmente útil quando o site alvo utiliza JavaScript extensivamente ou requer interações específicas com a página da web.
 - **BeautifulSoup**: Uma biblioteca Python para análise de documentos HTML e XML. Foi utilizada para extrair e manipular dados dos elementos HTML da página web.
-- **Pandas**: Uma biblioteca Python para manipulação e análise de dados. Foi utilizada para processar e manipular dados estruturados, como a junção de dataframes. Neste projeto foi usada especificamente para pegar os dados dos alunos do IFMT, que estavam separados por ano em arquivos CSV, e para juntar os dataframes com relação aluno-servidor.
+- **Pandas**: Uma biblioteca Python para manipulação e análise de dados. Foi utilizada para processar e manipular dados estruturados, como a junção de dataframes. Neste projeto foi usada especificamente para pegar os dados dos alunos do IFMT, que estavam separados por ano em arquivos CSV, e para juntar os dataframes aluno-servidor de acordo com o nome em comum.
 
 
 ## Funcionamento do Código
@@ -67,9 +66,6 @@ Se você tiver alguma dúvida ou sugestão sobre o projeto, sinta-se à vontade 
 
 Monyk Paola - monyk.penafor@gmail.com
 
-<!-- Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name) -->
-
-
 <br /><br /><br /><br />
 
 <h1 id="english" align="center">WEBSCRAPING</h1>
@@ -96,7 +92,10 @@ Monyk Paola - monyk.penafor@gmail.com
 
 ## About the Project
 
-This project was developed as part of a Scientific Initiation program at the Federal Institute of Education, Science and Technology of Mato Grosso (IFMT), entitled "In search of IFMT graduates working as public servants in the Municipality of Rondonópolis/MT". The project's objective is to automate the search for information about public servants on the Transparency Portal of the City Hall of Rondonópolis/MT, using web scraping techniques. The obtained data is compared with the data of IFMT students to establish a student-servant relationship and finally produce a file showing all IFMT students who are/were public servants in Rondonópolis. Project Result:<a href="https://github.com/MonykPenafor/WEBSCRAPING/blob/main/DADOS%20OBTIDOS/servidores_alunos_rondonopolis.csv">  <strong>servidores_alunos_rondonopolis</strong></a>
+
+This project was developed as part of a Scientific Initiation program at the Federal Institute of Education, Science and Technology of Mato Grosso (IFMT), entitled "In search of IFMT graduates working as public servants in the Municipality of Rondonópolis/MT." The project's objective is to automate the retrieval of information about public servants from the Transparency Portal of the City Hall of Rondonópolis/MT, using web scraping techniques. The obtained data is compared with the data of IFMT students to generate a file that shows the IFMT students who are/were public servants in Rondonópolis. 
+
+Project Result:<a href="https://github.com/MonykPenafor/WEBSCRAPING/blob/main/DADOS%20OBTIDOS/servidores_alunos_rondonopolis.csv">  <strong>servidores_alunos_rondonopolis</strong></a>
 
 
 ### Tools Used
@@ -104,7 +103,7 @@ This project was developed as part of a Scientific Initiation program at the Fed
 - **Python**: The main programming language used to develop this project.
 - **Selenium**: A web browser automation tool that allows simulating user interactions, such as clicking buttons and filling out forms. It is especially useful when the target site extensively uses JavaScript or requires specific interactions with the web page.
 - **BeautifulSoup**: A Python library for HTML and XML parsing. It was used to extract and manipulate data from HTML elements on the web page.
-- **Pandas**: A Python library for data manipulation and analysis. It was used to process and manipulate structured data, such as joining dataframes. In this project, it was specifically used to retrieve data from IFMT students, which were separated by year in CSV files, and to merge the dataframes with student-servant relationships.
+- **Pandas**: A Python library for data manipulation and analysis. It was used to process and manipulate structured data, such as joining dataframes. In this project, it was specifically used to fetch data from IFMT students, which were separated by year in CSV files, and to merge the student-server dataframes based on common names.
 
 
 ## Code Functionality
@@ -135,6 +134,3 @@ If you have any questions or suggestions about the project, feel free to contact
 ## Contact
 
 Monyk Paola - monyk.penafor@gmail.com
-
-<!-- Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name) -->
-
