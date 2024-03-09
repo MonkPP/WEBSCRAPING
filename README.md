@@ -93,7 +93,7 @@ Monyk Paola - monyk.penafor@gmail.com
 ## About the Project
 
 
-This project was developed as part of a Scientific Initiation program at the Federal Institute of Education, Science and Technology of Mato Grosso (IFMT), entitled "In search of IFMT graduates working as public servants in the Municipality of Rondonópolis/MT." The project's objective is to automate the retrieval of information about public servants from the Transparency Portal of the City Hall of Rondonópolis/MT, using web scraping techniques. The obtained data is compared with the data of IFMT students to generate a file that shows the IFMT students who are/were public servants in Rondonópolis. 
+This project was developed as part of a Undergraduate Research Project at the Federal Institute of Education, Science and Technology of Mato Grosso (IFMT), entitled "In search of IFMT graduates working as public servants in the City of Rondonópolis/MT." The project's objective is to automate the retrieval of information about public servants from the Transparency Portal of the City Hall of Rondonópolis/MT, using web scraping techniques. The obtained data is compared with the data of IFMT students to generate a file that shows the IFMT students who are/were public servants in Rondonópolis. 
 
 Project Result:<a href="https://github.com/MonykPenafor/WEBSCRAPING/blob/main/DADOS%20OBTIDOS/servidores_alunos_rondonopolis.csv">  <strong>servidores_alunos_rondonopolis</strong></a>
 
